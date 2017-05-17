@@ -12,7 +12,6 @@ def scale(x, in_min, in_max, out_min, out_max):
 ## enable the PC9685 and enable autoincrement
 bus.write_byte_data(addr, 0, 0x20)
 bus.write_byte_data(addr, 0xfe, 0x1e)
-##bus.write_byte_data(addr, 0xfe, 121)
 
 bus.write_word_data(addr, 0x06, 0)
 bus.write_word_data(addr, 0x08, 1250)
@@ -23,7 +22,6 @@ bus.write_word_data(addr, 0x0c, 1250)
 while True:
 	pipein = open("/var/www/html/FIFO_pipan", 'r')
 	line = pipein.readline()
-	print line
 	line_array = line.split(' ')
 	if line_array[0] == "servo":
 		pan_setting = scale(int(line_array[1]), 80, 220, 833, 1667)
